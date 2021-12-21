@@ -1,9 +1,10 @@
 #!/usr/bin/python3
 import random
-number = random.randint(-10000, 10000)
+number = -625
 string = "Last digit of"
 if number < 0:
     last = -number % 10
+    last = -last
 else:
     last = number % 10
 
@@ -12,4 +13,4 @@ if last > 5:
 elif last == 0:
     print("Last digit of {:d} is {:d} and is 0".format(number, last))
 else:
-    print(string, number, "is", -last, "and is less than 6 and not 0")
+    print(string, number, "is", last, "and is less than 6 and not 0")
