@@ -1,5 +1,6 @@
 *main.py
 *.pyc
 *.c
-!10-check_cycle.c
+!13-insert_number.c
 __pycache__
+insert
