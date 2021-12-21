@@ -1,0 +1,5 @@
+*main.py
+*.pyc
+*.c
+!10-check_cycle.c
+__pycache__
