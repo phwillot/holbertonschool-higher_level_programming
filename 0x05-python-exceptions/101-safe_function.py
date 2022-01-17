@@ -6,7 +6,7 @@ def safe_function(fct, *args):
     try:
         fct(*args)
         return fct(*args)
-    except (ZeroDivisionError, IndexError) as e:
+    except Exception as e:
         sys.stderr.write("Exception: ")
         sys.stderr.write(str(e))
         sys.stderr.write("\n")
