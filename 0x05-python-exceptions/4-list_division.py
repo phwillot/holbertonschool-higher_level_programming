@@ -1,8 +1,4 @@
 #!/usr/bin/python3
-from hashlib import new
-from zipfile import ZIP_BZIP2
-
-
 def list_division(my_list_1, my_list_2, list_length):
     new_list = []
     for i in range(0, list_length):
