@@ -63,14 +63,14 @@ class Square:
 
     def my_print(self):
         """ Prints the square with "#" and check position too"""
-        if self.__size == 0:
+        if self.size == 0:
             print()
         else:
             for k in range(self.position[1]):
                 print()
-            for i in range(self.__size):
+            for i in range(self.size):
                 for p in range(self.position[0]):
                     print(" ", end="")
-                for y in range(self.__size):
+                for y in range(self.size):
                     print("#", end="")
                 print()
