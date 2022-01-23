@@ -4,10 +4,6 @@ Module for text_indentation function
 """
 
 
-from curses.ascii import isalpha
-from os import sep
-
-
 def text_indentation(text):
     """text_indentation -
     Prints a text with 2 newlines after each of these character
@@ -29,7 +25,7 @@ def text_indentation(text):
         if i != 0:
             if text[i - 1] in separators and text[i] in separators:
                 print(text[i] + "\n")
-            if text[i - 1] in separators and not isalpha(text[i]):
+            if text[i - 1] in separators and not text[i].isalpha():
                 continue
         if text[i] not in separators:
             print(text[i], end="")
