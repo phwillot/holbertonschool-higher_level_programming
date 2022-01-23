@@ -1,8 +1,0 @@
-==============================
-Test for matrix_mul function:
-==============================
-
-Import module:
--------------
-
->>> matrix_mul = __import__('100-matrix_mul').matrix_mul
