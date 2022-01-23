@@ -1,0 +1,46 @@
+==============================
+Test for add_integer function:
+==============================
+
+Import module:
+-------------
+
+>>> add_integer = __import__('0-add_integer').add_integer
+
+============
+Number tests:
+============
+
+>>> add_integer(2, 3)
+5
+
+>>> add_integer(2)
+100
+
+================
+Non Number tests:
+================
+
+>>> add_integer("salut", "toi")
+Traceback (most recent call last):
+TypeError: a must be an integer
+
+>>> add_integer(None)
+Traceback (most recent call last):
+TypeError: a must be an integer
+
+>>> add_integer(None, None)
+Traceback (most recent call last):
+TypeError: a must be an integer
+
+>>> add_integer(98, None)
+Traceback (most recent call last):
+TypeError: b must be an integer
+
+>>> add_integer("Holberton", 1)
+Traceback (most recent call last):
+TypeError: a must be an integer
+
+>>> add_integer()
+Traceback (most recent call last):
+TypeError: add_integer() missing 1 required positional argument: 'a'

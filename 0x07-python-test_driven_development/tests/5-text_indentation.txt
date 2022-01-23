@@ -1,0 +1,58 @@
+==============================
+Test for text_indentation function:
+==============================
+
+Import module:
+-------------
+
+>>> text_indentation = __import__('5-text_indentation').text_indentation
+
+>>> text_indentation("Salut")
+Salut
+
+>>> text_indentation(":Salut")
+:
+<BLANKLINE>
+Salut
+
+>>> text_indentation("Salut:")
+Salut:
+<BLANKLINE>
+
+>>> text_indentation(23)
+Traceback (most recent call last):
+TypeError: text must be a string
+
+>>> text_indentation(".")
+.
+<BLANKLINE>
+
+>>> text_indentation(".?:")
+.
+<BLANKLINE>
+?
+<BLANKLINE>
+:
+<BLANKLINE>
+
+>>> text_indentation("salut:::toi")
+salut:
+<BLANKLINE>
+:
+<BLANKLINE>
+:
+<BLANKLINE>
+toi
+
+>>> text_indentation("")
+
+>>> text_indentation(" ")
+
+>>> text_indentation("\n")
+
+>>> text_indentation("\\")
+\
+
+>>> text_indentation("""""")
+
+>>> text_indentation("""     """)
