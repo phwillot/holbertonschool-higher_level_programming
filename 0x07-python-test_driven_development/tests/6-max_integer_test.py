@@ -15,7 +15,10 @@ class TestMaxInteger(unittest.TestCase):
         """
         self.assertEqual(max_integer([1, 2, 3]), 3)
         self.assertEqual(max_integer([3, 3, 3]), 3)
+        self.assertEqual(max_integer([3, 4, 3]), 4)
+        self.assertEqual(max_integer([5, 3, 3]), 5)
         self.assertEqual(max_integer([-3, 1, 2, 3]), 3)
+        self.assertEqual(max_integer([-3, -5, -8]), -3)
         self.assertEqual(max_integer([]), None)
         self.assertEqual(max_integer([None]), None)
         self.assertEqual(max_integer([1]), 1)
@@ -23,11 +26,3 @@ class TestMaxInteger(unittest.TestCase):
         self.assertEqual(max_integer(list), 3)
         list = [5000, -5200, float('inf')]
         self.assertEqual(max_integer(list), float('inf'))
-
-    def test_raises(self):
-        """
-        Check if raises happens when type of parameter is incorrect
-        """
-        self.assertRaises(TypeError, max_integer, "salut")
-        self.assertRaises(TypeError, max_integer, ["test", 1, 23])
-        self.assertRaises(TypeError, max_integer, None)
