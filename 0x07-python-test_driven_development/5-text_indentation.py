@@ -23,11 +23,12 @@ def text_indentation(text):
 
     for i in range(len(text)):
         if i != 0:
-            if text[i - 1] in separators and text[i] in separators:
-                print(text[i] + "\n")
-            elif text[i - 1] in separators and not text[i].isalpha():
+            if text[i - 1] == " " and text[i] == " ":
                 continue
-            elif text[i - 1] == " " and text[i] == " ":
+            elif text[i - 1] in separators and text[i] in separators:
+                print(text[i] + "\n")
+                continue
+            elif text[i - 1] in separators and text[i] == " ":
                 continue
 
         if text[i] not in separators:
