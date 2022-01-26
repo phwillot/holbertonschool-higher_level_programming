@@ -27,8 +27,8 @@ def text_indentation(text):
                 print(text[i] + "\n")
             elif text[i - 1] in separators and not text[i].isalpha():
                 continue
-            # elif text[i - 1] == " " and text[i] == " ":
-            #     continue
+            elif text[i - 1] == " " and text[i] == " ":
+                continue
 
         if text[i] not in separators:
             print(text[i], end="")
