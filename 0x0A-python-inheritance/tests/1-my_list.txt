@@ -1,22 +1,20 @@
 >>> MyList = __import__('1-my_list').MyList
 
->>> type(MyList())
-<class '1-my_list.MyList'>
-
->>> issubclass(MyList, list)
-True
 
 >>> empty = MyList()
->>> empty.print_sorted()
+>>> print(empty)
 []
 
->>> 'print_sorted' in dir(MyList)
-True
+>>> empty.print_sorted()
+[]
 
 >>> my_list = MyList()
 >>> my_list.append(1)
 >>> my_list.append(4)
 >>> my_list.append(2)
+>>> my_list.print_sorted()
+[1, 2, 4]
+
 >>> my_list.append(3)
 >>> my_list.append(5)
 >>> print(my_list)
@@ -24,15 +22,6 @@ True
 >>> my_list.print_sorted()
 [1, 2, 3, 4, 5]
 
->>> my_list = MyList()
->>> my_list.append(-5)
->>> my_list.append(-20)
->>> my_list.append(-500)
->>> my_list.append(-200)
->>> my_list.append(-1)
+>>> my_list.append(-3)
 >>> my_list.print_sorted()
-[-500, -200, -20, -5, -1]
-
->>> my_list.print_sorted(44, 33)
-Traceback (most recent call last):
-TypeError: print_sorted() takes 1 positional argument but 3 were given
+[-3, 1, 2, 3, 4, 5]
