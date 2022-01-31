@@ -46,3 +46,15 @@ TypeError: integer_validator() missing 2 required positional arguments: 'name' a
 >>> bg.integer_validator("test", "test")
 Traceback (most recent call last):
 TypeError: test must be an integer
+
+>>> bg.integer_validator("betty", {1, 2, 3})
+Traceback (most recent call last):
+TypeError: betty must be an integer
+
+>>> bg.integer_validator("betty", (1, 2, 3))
+Traceback (most recent call last):
+TypeError: betty must be an integer
+
+>>> bg.integer_validator("betty", [1, 2, 3])
+Traceback (most recent call last):
+TypeError: betty must be an integer
