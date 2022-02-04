@@ -81,7 +81,11 @@ class Rectangle(Base):
     def display(self):
         """Prints in stdout the Rectangle instance with
         the character #"""
+        if self.__y > 0:
+            print(self.__y * "\n", end="")
         for _ in range(self.__height):
+            for _ in range(self.__x):
+                print(" ", end="")
             for _ in range(self.__width):
                 print("#", end="")
             print()
@@ -91,3 +95,20 @@ class Rectangle(Base):
         dimensions and axes of the Rectangle instance"""
         return "[Rectangle] ({}) {}/{} - {}/{}".\
             format(self.id, self.__x, self.__y, self.__width, self.__height)
+
+    def update(self, *args, **kwargs):
+        """Assigns an argument to each attribute"""
+        if len(args) > 0:
+            array = ["id", "width", "height", "x", "y"]
+            i = 0
+            for arg in args:
+                setattr(self, array[i], arg)
+                i += 1
+        else:
+            for key, value in kwargs.items():
+                setattr(self, key, value)
+
+    def to_dictionary(self):
+        """Returns the dictionary representation of a Rectangle"""
+        return {"x": self.x, "y": self.y, "id": self.id,
+        "height": self.height, "width": self.width}
