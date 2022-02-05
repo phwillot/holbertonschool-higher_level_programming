@@ -1,13 +1,41 @@
 #!/usr/bin/python3
-"""This module will contain unittest for the class Base"""
+"""Unittest for base.py module"""
 import unittest
-
 from models.base import Base
-from models.rectangle import Rectangle
 
 
-class test_Base_class(unittest.TestCase):
-    """Basic tests for Base class"""
+class testBaseId(unittest.TestCase):
+    """Tests cases for Base ID"""
 
-    def test_id(self):
-        self.assertEqual(Base(42).id, 42)
+    def setUp(self):
+        Base._Base__nb_objects = 0
+
+    def test_empty_id(self):
+        self.assertEqual(Base().id, 1)
+
+    def test_none_id(self):
+        self.assertEqual(Base(None).id, 1)
+
+    def test_positive_id(self):
+        self.assertEqual(Base(48).id, 48)
+
+    def test_negative_id(self):
+        self.assertEqual(Base(-5).id, -5)
+
+    def test_zero_id(self):
+        self.assertEqual(Base(0).id, 0)
+
+    def test_mixed_id(self):
+        self.assertEqual(Base().id, 1)
+        self.assertEqual(Base().id, 2)
+        self.assertEqual(Base().id, 3)
+        self.assertEqual(Base(12).id, 12)
+        self.assertEqual(Base().id, 4)
+
+    def test_raise(self):
+        with self.assertRaises(TypeError):
+            Base(1, 2)
+
+
+if __name__ == "__main__":
+    unittest.main()
