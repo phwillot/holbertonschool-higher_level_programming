@@ -1,11 +1,14 @@
 #!/usr/bin/python3
 """Unittest for rectangle.py module"""
+from io import StringIO
+from unittest import TestCase, mock
 import unittest
+
 from models.rectangle import Rectangle
 from models.base import Base
 
 
-class testAttributeAndRaises(unittest.TestCase):
+class testAttributeAndRaises(TestCase):
     """Tests Case for attribute of the Rectangle"""
     def setUp(self):
         Base._Base__nb_objects = 0
@@ -101,13 +104,68 @@ class testAttributeAndRaises(unittest.TestCase):
             Rectangle(1, 1, 0, -1)
 
 
-class testMethodArea(unittest.TestCase):
+class testMethodArea(TestCase):
     """Tests for the area method of Rectangle class"""
     def test_calc_area(self):
         self.assertEqual(Rectangle(3, 2).area(), 6)
         self.assertEqual(Rectangle(1, 1).area(), 1)
         self.assertEqual(Rectangle(2, 10).area(), 20)
         self.assertEqual(Rectangle(8, 7, 0, 0, 12).area(), 56)
+
+    def test_area_with_arg(self):
+        with self.assertRaises(TypeError):
+            Rectangle(2, 5).area(10)
+
+
+class testMethodDisplay(TestCase):
+    """Tests for the display method of Rectangle class"""
+    def test_width_and_height_only(self):
+        with mock.patch("sys.stdout", new=StringIO()) as output:
+            Rectangle(2, 4).display()
+            self.assertEqual(output.getvalue(), "##\n##\n##\n##\n")
+
+    def test_with_x(self):
+        with mock.patch("sys.stdout", new=StringIO()) as output:
+            Rectangle(2, 2, 1).display()
+            self.assertEqual(output.getvalue(), " ##\n ##\n")
+
+    def test_with_y(self):
+        with mock.patch("sys.stdout", new=StringIO()) as output:
+            Rectangle(1, 2, 0, 1).display()
+            self.assertEqual(output.getvalue(), "\n#\n#\n")
+
+    def test_with_x_and_y(self):
+        with mock.patch("sys.stdout", new=StringIO()) as output:
+            Rectangle(3, 3, 1, 2).display()
+            self.assertEqual(output.getvalue(), "\n\n ###\n ###\n ###\n")
+
+    def test_display_with_arg(self):
+        with self.assertRaises(TypeError):
+            Rectangle(2, 2).display(5)
+
+
+class testMethodStr(TestCase):
+    """Tests for the __str__ method of Rectangle class"""
+    def setUp(self):
+        Base._Base__nb_objects = 0
+
+    def test_basic_print(self):
+        result = "[Rectangle] (1) 0/0 - 2/4"
+        with mock.patch("sys.stdout", new=StringIO()) as output:
+            print(Rectangle(2, 4), end="")
+            self.assertEqual(output.getvalue(), result)
+
+    def test_with_str(self):
+        result = "[Rectangle] (12) 1/0 - 3/6"
+        self.assertEqual(Rectangle(3, 6, 1, 0, 12).__str__(), result)
+
+    def test_with_strOfInstance(self):
+        result = "[Rectangle] (50) 21/14 - 5/5"
+        self.assertEqual(str(Rectangle(5, 5, 21, 14, 50)), result)
+
+    def test_str_with_arguments(self):
+        with self.assertRaises(TypeError):
+            Rectangle(2, 3).__str__(23)
 
 
 if __name__ == "__main__":
