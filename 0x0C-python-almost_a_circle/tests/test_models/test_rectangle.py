@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """Unittest for rectangle.py module"""
-from curses.textpad import rectangle
 from io import StringIO
 from unittest import TestCase, mock
 import unittest
