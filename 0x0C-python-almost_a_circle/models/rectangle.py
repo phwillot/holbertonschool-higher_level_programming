@@ -102,10 +102,21 @@ class Rectangle(Base):
             array = ["id", "width", "height", "x", "y"]
             i = 0
             for arg in args:
+                if i == 5:
+                    break
+                if arg is None and array[i] == "id":
+                    Base._Base__nb_objects += 1
+                    setattr(self, array[i], Base._Base__nb_objects)
+                    i += 1
+                    continue
                 setattr(self, array[i], arg)
                 i += 1
         else:
             for key, value in kwargs.items():
+                if key == "id" and value is None:
+                    Base._Base__nb_objects += 1
+                    setattr(self, key, Base._Base__nb_objects)
+                    continue
                 setattr(self, key, value)
 
     def to_dictionary(self):

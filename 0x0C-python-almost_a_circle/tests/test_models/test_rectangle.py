@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """Unittest for rectangle.py module"""
+from curses.textpad import rectangle
 from io import StringIO
 from unittest import TestCase, mock
 import unittest
@@ -166,6 +167,119 @@ class testMethodStr(TestCase):
     def test_str_with_arguments(self):
         with self.assertRaises(TypeError):
             Rectangle(2, 3).__str__(23)
+
+
+class testMethodUpdate(TestCase):
+    """Tests for the update method of Rectangle class"""
+    def setUp(self):
+        Base._Base__nb_objects = 0
+
+    # *args tests
+    def test_no_arg(self):
+        r1 = Rectangle(10, 10, 10, 10)
+        r1.update()
+        self.assertEqual(str(r1), "[Rectangle] (1) 10/10 - 10/10")
+
+    def test_none_arg(self):
+        r1 = Rectangle(10, 10, 10, 10, 50)
+        r1.update(None)
+        self.assertEqual(str(r1), "[Rectangle] (1) 10/10 - 10/10")
+
+    def test_one_arg(self):
+        r1 = Rectangle(10, 10, 10, 10)
+        r1.update(89)
+        self.assertEqual(str(r1), "[Rectangle] (89) 10/10 - 10/10")
+
+    def test_two_args(self):
+        r1 = Rectangle(10, 10, 10, 10)
+        r1.update(89, 2)
+        self.assertEqual(str(r1), "[Rectangle] (89) 10/10 - 2/10")
+
+    def test_three_args(self):
+        r1 = Rectangle(10, 10, 10, 10)
+        r1.update(89, 2, 3)
+        self.assertEqual(str(r1), "[Rectangle] (89) 10/10 - 2/3")
+
+    def test_four_args(self):
+        r1 = Rectangle(10, 10, 10, 10)
+        r1.update(89, 2, 3, 4)
+        self.assertEqual(str(r1), "[Rectangle] (89) 4/10 - 2/3")
+
+    def test_five_args(self):
+        r1 = Rectangle(10, 10, 10, 10)
+        r1.update(89, 2, 3, 4, 5)
+        self.assertEqual(str(r1), "[Rectangle] (89) 4/5 - 2/3")
+
+    def test_too_many_args(self):
+        r1 = Rectangle(10, 10, 10, 10)
+        r1.update(89, 2, 3, 4, 5, 6, 7)
+        self.assertEqual(str(r1), "[Rectangle] (89) 4/5 - 2/3")
+
+    def test_raise_wrong_value(self):
+        r1 = Rectangle(10, 10, 10, 10)
+        with self.assertRaises(ValueError):
+            r1.update(10, -23)
+
+    def test_raise_type_value(self):
+        r1 = Rectangle(10, 10, 10, 10)
+        with self.assertRaises(TypeError):
+            r1.update(10, "-5")
+
+    # **kwargs tests
+    def test_one_kwarg(self):
+        r1 = Rectangle(10, 10, 10, 10)
+        r1.update(height=1)
+        self.assertEqual(str(r1), "[Rectangle] (1) 10/10 - 10/1")
+
+    def test_id_only_kwarg(self):
+        r1 = Rectangle(10, 10, 10, 10)
+        r1.update(id=23)
+        self.assertEqual(str(r1), "[Rectangle] (23) 10/10 - 10/10")
+
+    def test_id_none_kwarg(self):
+        r1 = Rectangle(10, 10, 10, 10, 5)
+        r1.update(id=None)
+        self.assertEqual(str(r1), "[Rectangle] (1) 10/10 - 10/10")       
+
+    def test_two_kwargs(self):
+        r1 = Rectangle(10, 10, 10, 10)
+        r1.update(width=1, x=2)
+        self.assertEqual(str(r1), "[Rectangle] (1) 2/10 - 1/10")
+
+    def test_four_kwargs(self):
+        r1 = Rectangle(10, 10, 10, 10)
+        r1.update(y=1, width=2, x=3, id=89)
+        self.assertEqual(str(r1), "[Rectangle] (89) 3/1 - 2/10")
+
+    def test_too_many_kwargs(self):
+        r1 = Rectangle(10, 10, 10, 10, 10)
+        r1.update(id=1, x=2, y=3, width=4, height=5, test=23)
+        self.assertEqual(str(r1), "[Rectangle] (1) 2/3 - 4/5")
+
+    def test_args_and_kwargs(self):
+        r1 = Rectangle(10, 10, 10, 10, 10)
+        r1.update(1, 2, 3, x=4, y=5)
+        self.assertEqual(str(r1), "[Rectangle] (1) 10/10 - 2/3")
+
+    def test_unknown__and_known_kwargs(self):
+        r1 = Rectangle(10, 10, 10, 10)
+        r1.update(x=1, z=2)
+        self.assertEqual(str(r1), "[Rectangle] (1) 1/10 - 10/10")
+
+    def test_unknown_only_kwargs(self):
+        r1 = Rectangle(10, 10, 10, 10)
+        r1.update(z=2, depth=50)
+        self.assertEqual(str(r1), "[Rectangle] (1) 10/10 - 10/10")
+
+    def test_raise_value_kwargs(self):
+        r1 = Rectangle(10, 10, 10, 10)
+        with self.assertRaises(ValueError):
+            r1.update(x=-23)
+    
+    def test_raise_type_kwars(self):
+        r1 = Rectangle(10, 10, 10, 10)
+        with self.assertRaises(TypeError):
+            r1.update(y="23")
 
 
 if __name__ == "__main__":
