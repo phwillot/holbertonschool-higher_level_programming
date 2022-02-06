@@ -239,7 +239,7 @@ class testMethodUpdate(TestCase):
     def test_id_none_kwarg(self):
         r1 = Rectangle(10, 10, 10, 10, 5)
         r1.update(id=None)
-        self.assertEqual(str(r1), "[Rectangle] (1) 10/10 - 10/10")       
+        self.assertEqual(str(r1), "[Rectangle] (1) 10/10 - 10/10")
 
     def test_two_kwargs(self):
         r1 = Rectangle(10, 10, 10, 10)
@@ -275,7 +275,7 @@ class testMethodUpdate(TestCase):
         r1 = Rectangle(10, 10, 10, 10)
         with self.assertRaises(ValueError):
             r1.update(x=-23)
-    
+
     def test_raise_type_kwars(self):
         r1 = Rectangle(10, 10, 10, 10)
         with self.assertRaises(TypeError):
