@@ -1,12 +1,7 @@
 #!/usr/bin/node
-if (process.argv.length <= 3) console.log('0');
-else {
-  let max = process.argv[2];
-  let secondMax = process.argv[2];
-
-  for (const value of process.argv) { if (value > max) max = value; }
-
-  for (const value of process.argv) { if (value < max && secondMax < value) secondMax = value; }
-
-  console.log(secondMax);
-}
+if (process.argv.length > 3) {
+  const intArray = process.argv.slice(2).map(Number);
+  intArray.sort();
+  intArray.pop();
+  console.log(intArray.slice(-1)[0]);
+} else console.log(0);
