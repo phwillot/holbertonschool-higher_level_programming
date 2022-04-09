@@ -12,5 +12,5 @@ if __name__ == "__main__":
         pool_pre_ping=True)
     session = Session(engine)
     row = session.query(State).filter(State.name == sys.argv[4]).one_or_none()
-    print(row.id if row else "Nothing")
+    print(row.id if row else "Not found")
     session.close()
