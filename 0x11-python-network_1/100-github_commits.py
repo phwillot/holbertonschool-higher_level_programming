@@ -11,13 +11,14 @@ Print all commits by: `<sha>: <author name>` (one by line)
 from sys import argv
 import requests
 
-
 if __name__ == "__main__":
-    url = "https://api.github.com/repos/{}/{}/commits?per_page=10"\
-          .format(argv[2], argv[1])
+    repoName = argv[1]
+    ownerName = argv[2]
 
-    request = requests.get(url)
-    commits = request.json()
-    for commit in commits:
-        print("{}: {}".format(commit.get("sha"),
-                              commit.get("commit").get("author").get("name")))
+    r = requests.get(
+        "https://api.github.com/repos/{}/{}/commits".format(
+            ownerName, repoName))
+    dict = r.json()
+    for i in range(10):
+        print("{}: {}".format(dict[i].get('sha'),
+              dict[i].get('commit').get("author").get('name')))
