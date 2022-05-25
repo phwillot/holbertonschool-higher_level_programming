@@ -1,1 +1,1 @@
-$('div#red_header').addClass('red')
+$('div#red_header').addClass('red');
